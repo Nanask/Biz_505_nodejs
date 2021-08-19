@@ -19,6 +19,9 @@ console.table(객체2);
 // console.table()은 1개의 객체만 console에 출력하는 함수
 // console.table(객체1, 객체2);
 
+// m = 매개변수 
+
 const 콘솔 = (m) => console.log(m);
 
 콘솔(300 * 100);
+
