@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>NO</th>
+        <th>작성일자</th>
+        <th>작성자</th>
+        <th>제목</th>
+        <th>조회수</th>
+      </tr>
+
+      <tr>
+        <td><%- BBS.b_id %></td>
+        <td><%- BBS.b_date %></td>
+        <td><%- BBS.b_time %></td>
+        <td><%- BBS.b_subject %></td>
+        <td><%- BBS.b_count %></td>
+      </tr>
+    </table>
+    <button>수정</button>
+  </body>
+</html>
