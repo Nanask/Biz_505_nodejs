@@ -17,7 +17,7 @@ router.post("/write", (req, res) => {
 router.get("/update", (req, res) => {
   let id = req.query.seq;
   tbl_bbs.findByPk(id).then((result) => {
-    console.log("hello");
+    console.log("seq",id);
     res.render("update", { BBS: result });
   });
 });

@@ -7,23 +7,28 @@
     <title></title>
   </head>
   <body>
-    <table>
-      <tr>
-        <th>NO</th>
-        <th>작성일자</th>
-        <th>작성자</th>
-        <th>제목</th>
-        <th>조회수</th>
-      </tr>
+    <form method="POST">
+      <div>
+        <input id="b_writer" name="b_writer" type="hidden" value="<%- BBS.b_id %>" />
+      </div>
+      <div>
+        <label>작성자</label><input id="b_writer" name="b_writer" type="text" value="<%- BBS.b_writer %>" />
+      </div>
+      <div>
+        <label>작성일자</label><input id="b_date" name="b_date" type="text" value="<%- BBS.b_date %>"/>
+      </div>
+      <div>
+        <label>작성시간</label><input id="b_time" name="b_time" type="text" value="<%- BBS.b_time %>"/>
+      </div>
+      <div>
+        <label>제목</label><input id="b_subject" name="b_subject" type="text" value="<%- BBS.b_subject %>"/>
+      </div>
+      <div>
+        <label>내용</label><textarea id="b_text" name="b_text"><%- BBS.b_text %></textarea>
+      </div>
+      <button id="btn_save">저장</button>
+    </form>
 
-      <tr>
-        <td><%- BBS.b_id %></td>
-        <td><%- BBS.b_date %></td>
-        <td><%- BBS.b_time %></td>
-        <td><%- BBS.b_subject %></td>
-        <td><%- BBS.b_count %></td>
-      </tr>
-    </table>
     <button>수정</button>
   </body>
 </html>

@@ -9,12 +9,12 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.get("/", function (req, res, next) {
-  let id = res.query;
-  console.log("seq", id);
-  tbl_bbs.findByPk(seq).then((result) => {
-    res.render("index", { BBS: result.rows });
-  });
-});
+// router.get("/", function (req, res, next) {
+//   let id = res.query;
+//   console.log("seq", id);
+//   tbl_bbs.findByPk(seq).then((result) => {
+//     res.render("index", { BBS: result.rows });
+//   });
+// });
 
 module.exports = router;
