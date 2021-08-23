@@ -54,6 +54,9 @@ for (let i = 0; i < 배열3.length; i++) {
 // 비동기 종료
 // 와 같이 순서대로 작동된다는 보장이 없다.
 console.log("비동기 시작")
+
+// console을 하나 찍었는데 전체 요소들이 보이는 이유는?
+// for문처럼 다 돌아서 그런다 멍청아!
 배열3.forEach(function (요소) {
     console.log(요소);
 });
@@ -80,6 +83,9 @@ console.log("비동기 종료");
  * 
  */
 
+
+// 일단 여기까지....!!!
+// 내일까지 검색해보기 map
 let 또다른배열 = 배열3.map((요소) => {
     console.log(요소);
     return 요소 + "A";
