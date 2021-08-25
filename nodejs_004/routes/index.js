@@ -13,7 +13,7 @@ router.get("/", function (req, res, next) {
 //   let id = res.query;
 //   console.log("seq", id);
 //   tbl_bbs.findByPk(seq).then((result) => {
-//     res.render("index", { BBS: result.rows });
+//     res.render("index",;
 //   });
 // });
 
