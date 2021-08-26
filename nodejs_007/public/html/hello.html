@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<style>
+		div.pa {}
+	</style>
+	<script>
+		document.addEventListener("DOMcontentLoaded", () => {
+			documnet.querySelector("#ga").addEventListener("click", () => {
+
+			})
+
+		})
+		// 지금부터  제이쿼리 시작알림 , $() 는 선택자라고 함
+		// document.querySelector("document")와 같은 것
+		$(document).ready(function () {
+			// JQuery 문법이 적용되는 영역
+		})
+		// 최신 JQuery 시작, 현재 돔이 모두 그려졌으면 id가 ga라고 되어있는 곳에 클릭 이벤트를 입력하겠다.
+		$(function () {
+			$("#ga").on("click", function () {
+				// 자기자신을 보여라
+				alert($(this).text());
+			})
+			// 화살표함수를 쓰면 자체가 된다?
+			$("#na").on("click", (e) => {
+				alert($(e.target).text())
+			})
+			//da를 클릭하면 페이드아웃 시켜라
+			$("#da").on("click", function () {
+				$(this).fadeOut();
+			})
+		})
+		$(() => {
+			//JQuery 코드가 작동되는 영역
+		})
+	</script>
+</head>
+
+<body>
+	<h1>반갑습니다.</h1>
+	<div class="pa">
+		<div id="ga">가</div>
+	</div>
+	<div class="pa">
+		<div id="na">나</div>
+	</div>
+	<div class="pa">
+		<div id="da">다</div>
+	</div>
+
+</body>
+
+</html>

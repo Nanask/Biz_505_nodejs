@@ -31,16 +31,26 @@ router.get("/detail", (req, res) => {
     const b_id = req.query.b_id;
     // PK를 기준으로 1개의 데이터를 추출하라
 
-    tbl_bbs.findByPk(b_id).then(result => {
-        console.table(result);
-        // res.json(result);
-        res.render("detail", { BBS: result });
+    // tbl_bbs.findByPk(b_id).then(result => {
+    //     console.table(result);
+    //     // res.json(result);
+    //     res.render("detail", { BBS: result });
+    // })
+    // tbl_bbs에서 B_id 컬럼값으로 데이터를 1개 SELECT하고 tbl_replay의 r_postId = b_id로 
+    // WHERE을 실행하여 tbl_replay를 select하고 그 list를 함께 묶어서 결과로 달라
+    tbl_bbs.findOne({
+        where: { b_Id },
+        include: { model: tbl_replay },
     })
+        .then((result) => {
+            res.render("detail", { BBS: result })
+        })
+
 })
 
 router.get("/delete", (req, res) => {
     const b_id = req.query.b_id;
-        // 데이터를 삭제하라
+    // 데이터를 삭제하라
     tbl_bbs.destroy(
         {
             // b_id 칼럼의 값이 변수 b_id에 담긴 값과 같으면
@@ -54,11 +64,11 @@ router.get("/delete", (req, res) => {
 router.get("/update", (req, res) => {
     const b_id = req.query.b_id;
 
-  // PK 또는 일반 칼럼에 조건을 주어 1개의 데이터를
-  // SELECT 할때
-  // tbl_bbs.findOne({
-  //  where: { b_id },
-  // });
+    // PK 또는 일반 칼럼에 조건을 주어 1개의 데이터를
+    // SELECT 할때
+    // tbl_bbs.findOne({
+    //  where: { b_id },
+    // });
 
     tbl_bbs.findOne({
         where: { b_id }
