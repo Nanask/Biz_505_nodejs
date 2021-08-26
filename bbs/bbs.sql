@@ -12,3 +12,7 @@ DESC tbl_bbs;
 DROP TABLE tbl_bbs;
 
 SELECT * FROM tbl_bbs;
+SELECT * FROM nodedb.tbl_replies;
+
+DESC tbl_replies;
+

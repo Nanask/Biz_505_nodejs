@@ -27,8 +27,11 @@ block content
 			if(td.tagName === "TD") {
 				const tr = td.parentNode 
 				const b_id = tr.dataset.id
-				//- alert(b_id)
-				document.location.href='/bbs/detail?b_id=${b_id}'
+				document.location.href=`/bbs/detail?b_id=${b_id}`
 
 			}
+		})
+		document.querySelector("button.btn_write")
+		.addEventListener("click",(e)=>{
+			document.location.href=`/bbs/write`
 		})
