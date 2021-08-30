@@ -34,17 +34,15 @@ router.get("/detail", (req, res) => {
   // tbl_bbs에서 b_id 칼럼값으로 데이터를 1개 SELECT하고
   // tbl_reply.r_postId = b_id로 WHERE를 실행하여
   // tbl_reply를 SELECT하고 그 LIST를 함께 묶어서 결과로 달라
-  tbl_bbs
-    .findOne({ where: { b_id }, include: { model: tbl_reply } })
-    .then((result) => {
-      console.log(result);
-      res.render("detail", { BBS: result });
-    });
+  tbl_bbs.findOne({ where: { b_id }, include: { model: tbl_reply } }).then((result) => {
+    console.log(result);
+    res.render("detail", { BBS: result });
+  });
 });
 
 router.get("/delete", (req, res) => {
   const b_id = req.query.b_id;
-  //
+  //삭제
   tbl_bbs.destroy({ where: { b_id } }).then(() => {
     res.redirect("/");
   });

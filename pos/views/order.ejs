@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      h1 {
+        text-align: center;
+        margin: 10px 0px 10px 0px;
+      }
+
+      h3 {
+        margin-left: 200px;
+      }
+      form {
+        display: flex;
+      }
+      div.list {
+        flex: 2;
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        gap: 10px;
+        justify-content: space-evenly;
+        /* margin: auto; */
+      }
+      div.table {
+        flex: 1;
+
+        /* border-spacing: 10px; */
+      }
+      table {
+        margin: auto;
+        border-collapse: collapse;
+      }
+      th {
+        border-bottom: 1px solid black;
+        padding: 20px;
+      }
+      td {
+        text-align: center;
+        padding-top: 10px;
+      }
+      button {
+        padding: 30px;
+        margin: 0px 5px 0px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%- order.o_table %>번 테이블</h1>
+    <h3>주문하기</h3>
+    <form>
+      <div class="table">
+        <table>
+          <tr>
+            <th>품목</th>
+            <th>단가</th>
+            <th>수량</th>
+            <th>금액</th>
+          </tr>
+          <tr>
+            <td>김밥</td>
+            <td>2000</td>
+            <td>3</td>
+            <td>6000</td>
+          </tr>
+        </table>
+      </div>
+      <div class="list">
+        <% PD.forEach((vo)=> { %>
+        <button id="code" data-code="<%- vo.p_code %>"><%- vo.p_name %></button>
+        <% }) %>
+      </div>
+    </form>
+  </body>
+  <script>
+    document.querySelector("button#code").addEventListener("click", (e) => {
+      const t = e.target;
+      const code = t.dataset.code;
+
+      document.location.href = "/order/list?code=" + code;
+    });
+  </script>
+</html>
