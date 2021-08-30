@@ -10,7 +10,9 @@ router.get("/detail", (req, res) => {
   tbl_orders.findOne({ where: { o_table } }).then((result) => {
     console.log("테이블번호", { o_table });
     if (result) {
-      res.render("detail", { order: result });
+    //   res.render("detail", { order: result });
+	  res.render({ order: result });
+	  res.redirect("/")
     } else {
       // res.render("order", { order: { o_table } })
       tbl_products.findAndCountAll().then((result) => {
@@ -24,7 +26,9 @@ router.get("/detail", (req, res) => {
 router.get("/list", (req, res) => {
   const code = req.query.code;
 
-  tbl_products.findByPk(code).then((result) => {});
+  tbl_products.findByPk(code).then((result) => {
+	  res.json()
+  });
 });
 
 // router.get("/detail", (req, res) => {
