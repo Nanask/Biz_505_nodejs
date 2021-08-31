@@ -1,0 +1,40 @@
+extends layout
+
+block content
+	script(src="/js/order.js")
+	style.
+		section.main {
+			display: flex;
+
+		}
+		article {
+			border:1px solid green;
+			margin: 10px;
+			padding : 10px;
+			background-color:#ddd;
+		}
+		article.order_list {
+			flex: 2;
+		}
+		article.product_list {
+			flex: 3;
+			display: flex;
+			flex-wrap:wrap;
+		}
+
+		article.product_list div.menu {
+			width:100px;
+			margin:5px;
+			border: 1px solid red;
+			background-color: #ddd;
+			color:blue;
+
+		}
+		//- 테이블 메뉴를 보관한다? 무슨말이지
+	article.order_list(data-table_id= table_id)
+		h1 !{table_id} 번 테이블 주소 리스트
+	article.product_list
+		-for(let i = 0 ; i < 20 ; i++)
+			div.menu(data-menu_id= i+1) !{i+1} 번 메뉴
+
+	
