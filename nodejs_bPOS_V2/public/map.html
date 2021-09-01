@@ -16,9 +16,9 @@
     // 배열을 사용하여 tag를 추가하는 전통적인 JS 코드
     //  그러니 이렇게 표시할 경우 배열이 많다면 문제가 생긴다.
     const div_main = document.querySelector("div.main");
-    tags.forEach((tag, index) => { 
+    tags.forEach((tag, index) => {
       const div = document.createElement("div");
-      div.innerText = index.tag;
+      div.innerText = tag;
       div_main.appendChild(div);
     });
 

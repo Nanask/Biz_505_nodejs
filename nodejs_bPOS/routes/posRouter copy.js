@@ -66,6 +66,7 @@ router.get("/order/:table_id/input/:menu_id", (req, res) => {
   //   const menu = {
   //     table_id,
   //     menu_id,
+  
   //     menu_name: "1000원 김밥",
   //     menu_price: 1000,
   //   };
