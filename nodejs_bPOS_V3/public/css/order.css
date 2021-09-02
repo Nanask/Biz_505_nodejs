@@ -102,3 +102,7 @@ button.btn_pay_cash {
 button.btn_pay_card {
   background-color: peachpuff;
 }
+
+div.order_yes {
+  background-color: #00aa00;
+}

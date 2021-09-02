@@ -18,7 +18,7 @@ block content
 
 			text-align: center;
 
-			//- 박스크기와 같게 만들고 세로정렬이 된다.
+			
 			line-height: 100px;
 
 			background-color: green;
@@ -31,5 +31,13 @@ block content
 		div.table:hover {
 			box-shadow:2px 2px 2px blue;
 		}
-	-for(let i = 0; i < 12; i++)
-		div.table(data-table_id= i+1) !{i + 1}번 테이블
+		div.order_yes {
+			background-color : #00AA00;
+		}
+	
+	each table,index in TABLES
+		if(table.order_count > 0)
+			div.table.order_yes(data-table_id= table.id) !{table.table_name}
+				span (!{table.order_count})
+		else
+			div.table(data-table_id= table.id) !{table.table_name}
