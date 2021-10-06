@@ -1,5 +1,6 @@
 import passport from "passport";
 import passportLocal from "passport-local";
+import User from "../models/User.js";
 
 // local login 정책을 수행하는 모듈
 const LocalStratege = passportLocal.Strategy;
@@ -32,7 +33,24 @@ export default () => {
       login이 성공했을 경우 done() 함수의 2번째 매개변수에 로그인 정보를 담아주면
       router에서 req.user 객체가 생성되고 로그인한 정보를 추출할 수 있다
       */
-        return done(null, { userid: "root", password: "12345" });
+
+        // return done(null, { userid: "root", password: "12345" });
+
+        console.log(userid, password);
+        User.findOne({ userid: userid, password: password }, (err, data) => {
+          if (err) {
+            return done(err); // 시스템오류
+          }
+          console.log(data);
+          if (!data) {
+            return done(null, false, { massage: "존재하지 않는 아이디입니다" });
+          }
+          if (data.password != password) {
+            return done(null, false, { message: "비밀번호오류" });
+          }
+          return done(null, data);
+        });
+        // return done(null, { userid: "root", password: "12345" });
       }
     )
   );

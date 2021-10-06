@@ -1,10 +1,29 @@
 import express from "express";
 import passport from "passport";
+import users from "../models/User.js";
+
 const router = express.Router();
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
+});
+
+// BBs.jsx에서 POST로 보낸 데이터를 받기
+// http://localhost/users 응답
+router.post("/", (req, res) => {
+  // 로그인이 수행되어서 session이 유효한 경우에는
+  // req.user 속성이 존재한다
+  // 로그인이 안되거나 session이 유효하지 않으면
+  // req.user가 없다
+
+  if (req.user) {
+    console.log("session OK");
+    res.json(req.user);
+  } else {
+    // 데이터가 없다면 빈 배열을 넣어주기, 이러면 자동 로그아웃을 시킬수 있다?
+    res.json([]);
+  }
 });
 
 /**
@@ -24,7 +43,7 @@ router.get("/", function (req, res, next) {
 router.post("/login", passport.authenticate("local"), (req, res) => {
   // res.json({ result: "OK" });
   console.log(req.user); // passport가 거쳤을때 확인하는 절차?
-  // res.json({ user : req.user });
+  // res.json({ user : req.user });p
   res.json({
     userid: req.user.userid,
     password: req.user.password,
@@ -47,9 +66,18 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
  * https 를 사용하면 데이터가 암호화 되어 전송된다
  * => 서버에서 받을때는 req.body.변수
  */
-router.post("/join", (req, res) => {
-  const { userid, password, email } = req.body;
-  console.log("userid", userid), console.log("password", password), console.log("email", email), res.json("받았는지 확인");
+router.post("/join", async (req, res) => {
+  // const { userid, password, email } = req.body;
+
+  const userVO = new users(req.body);
+
+  userVO.save((err, data) => {
+    res.json(data);
+  });
+  // })
+  // console.log("userid", userid), console.log("password", password), console.log("email", email), res.json("받았는지 확인");
+  // const result = await users.create(req.body);
+  // console.log(result);
 });
 
 export default router;
