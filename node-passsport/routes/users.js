@@ -4,6 +4,7 @@ import users from "../models/User.js";
 
 const router = express.Router();
 
+// get방식으로 할경우 cors 로 인하여 정보가 나오지 않을 수 있음
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   res.send("respond with a resource");
@@ -16,10 +17,11 @@ router.post("/", (req, res) => {
   // req.user 속성이 존재한다
   // 로그인이 안되거나 session이 유효하지 않으면
   // req.user가 없다
+  // session 정보가 존재를 하면 현재 res.user 정보를 클라이언트에서 전송하고 없으면 빈 배열[]을 전송하여 session이 없음을 통보한다
 
   if (req.user) {
     console.log("session OK");
-    res.json(req.user);
+    res.json(req.user); // 넘겨준 데이터 값을 BBS에서 받는다.
   } else {
     // 데이터가 없다면 빈 배열을 넣어주기, 이러면 자동 로그아웃을 시킬수 있다?
     res.json([]);
@@ -78,6 +80,19 @@ router.post("/join", async (req, res) => {
   // console.log("userid", userid), console.log("password", password), console.log("email", email), res.json("받았는지 확인");
   // const result = await users.create(req.body);
   // console.log(result);
+});
+
+/**
+ * passport로 로그인된 경우 req.logout() 함수가 생성되며
+ * 해당 함수를 호출하면 passport logout이 수행된다
+ *
+ */
+
+router.post("/logout", async (req, res) => {
+  await req.logout();
+  // 저장된 session을 삭제해준다
+  await req.session.destroy();
+  res.send({ message: "logout ok" });
 });
 
 export default router;
